@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha Loja</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1 class="brand">Pangas Ecommerce</h1>
+    <div class="controls">
+      <label>Pesquisar: <input id="q" type="text"></label>
+      <label>Categoria:
+        <select id="cat">
+          <option value="">Todas</option>
+        </select>
+      </label>
+      <label>Ordenar:
+        <select id="sort">
+          <option value="name-asc">Nome ↑</option>
+          <option value="name-desc">Nome ↓</option>
+          <option value="price-asc">Preço ↑</option>
+          <option value="price-desc">Preço ↓</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div id="catalog" class="grid"></div>
+
+    <div id="cart">
+      <h2>Carrinho</h2>
+      <div id="cartItems"></div>
+      <div class="cart-empty" id="cartEmpty">Carrinho vazio</div>
+      <div class="totals">
+        <div class="row"><strong>Subtotal:</strong> <span id="subtotal">R$ 0,00</span></div>
+        <button class="checkout-btn" id="btnCheckout">Finalizar Compra</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal Detalhe Produto -->
+<dialog id="dlgDetail">
+  <div class="dialog-header">
+    <h3 id="detailTitle"></h3>
+    <button id="closeDetail">Fechar</button>
+  </div>
+  <div class="dialog-content detail">
+    <div>
+      <img id="detailImage" src="" alt="">
+      <div id="detailThumbs" class="thumbs"></div>
+    </div>
+    <div>
+      <p id="detailDesc"></p>
+      <p>Categoria: <span id="detailCat"></span></p>
+      <p>Preço: <span id="detailPrice"></span></p>
+      <div class="buy">
+        <label>Qtd: <input id="detailQty" type="number" min="1" value="1"></label>
+        <button id="addToCart">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Modal Checkout -->
+<dialog id="dlgCheckout">
+  <div class="dialog-header">
+    <h3>Checkout</h3>
+    <button id="closeCheckout">Fechar</button>
+  </div>
+  <div class="dialog-content">
+    <form id="formCheckout">
+      <div class="form-grid">
+        <label class="col-2">Nome: <input id="nome" type="text" required></label>
+        <label>CEP: <input id="cep" type="text" required></label>
+        <label>Rua: <input id="rua" type="text" required></label>
+        <label>Número: <input id="numero" type="text" required></label>
+        <label>Bairro: <input id="bairro" type="text" required></label>
+        <label>Cidade: <input id="cidade" type="text" required></label>
+        <label>UF: <input id="uf" type="text" required></label>
+        <label class="col-2">Complemento: <input id="complemento" type="text"></label>
+      </div>
+      <button type="submit" class="checkout-btn">Finalizar Pedido</button>
+    </form>
+  </div>
+</dialog>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
