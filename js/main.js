@@ -1,20 +1,17 @@
-// ====== Dados dos produtos ======
 const PRODUCTS = [
     {id:1, name:'Headset Gamer', price:249.9, category:'Acessórios', description:'Headset com som 7.1, microfone removível e acolchoamento macio.', images:['https://images.unsplash.com/photo-1583394838336-acd977736f90','https://images.unsplash.com/photo-1518445076-838ce5f3f3f1']},
-    {id:2, name:'Teclado Mecânico', price:399.0, category:'Periféricos', description:'Switches azuis, iluminação RGB e construção em alumínio.', images:['https://images.unsplash.com/photo-1517336714731-489689fd1ca8','https://images.unsplash.com/photo-1518779578993-ec3579fee39f']},
-    {id:3, name:'Mouse Sem Fio', price:159.9, category:'Periféricos', description:'Sensor de alta precisão, 2.4Ghz e Bluetooth, até 70h bateria.', images:['https://images.unsplash.com/photo-1587825140400-9b06d8f67b2c']},
+    {id:2, name:'Teclado Mecânico', price:399.0, category:'Periféricos', description:'Switches azuis, iluminação RGB e construção em alumínio.', images:['https://m.media-amazon.com/images/I/61FR1BJ71IL._UF894,1000_QL80_.jpg','https://images.unsplash.com/photo-1518779578993-ec3579fee39f']},
+    {id:3, name:'Mouse Sem Fio', price:159.9, category:'Periféricos', description:'Sensor de alta precisão, 2.4Ghz e Bluetooth, até 70h bateria.', images:['https://www.bright.com.br/media/djcatalog2/images/item/4/mouse-sem-fio-preto_f.jpg']},
     {id:4, name:'Notebook 14"', price:3499.0, category:'Computadores', description:'Ryzen 5, 16GB RAM, SSD 512GB, tela Full HD.', images:['https://images.unsplash.com/photo-1517336714731-489689fd1ca8']},
-    {id:5, name:'Monitor 27" 144Hz', price:1799.9, category:'Monitores', description:'Painel IPS, 1ms, HDR10, bordas finas.', images:['https://images.unsplash.com/photo-1517336714731-489689fd1ca8']},
-    {id:6, name:'Cadeira Ergonômica', price:1299.9, category:'Móveis', description:'Apoio lombar, ajuste de altura e inclinação.', images:['https://images.unsplash.com/photo-1598300053650-3a15f3f24d2b']},
-    {id:7, name:'SSD NVMe 1TB', price:449.9, category:'Armazenamento', description:'Leituras até 3500 MB/s, 5 anos de garantia.', images:['https://images.unsplash.com/photo-1616348436166-7c2a8b3b5ffe']},
-    {id:8, name:'Webcam 1080p', price:229.0, category:'Acessórios', description:'Autofoco, microfone estéreo e clip universal.', images:['https://images.unsplash.com/photo-1517336714731-489689fd1ca8']}
+    {id:5, name:'Monitor 27" 144Hz', price:1799.9, category:'Monitores', description:'Painel IPS, 1ms, HDR10, bordas finas.', images:['https://t17208.vtexassets.com/arquivos/ids/161466/Monitor-Gamer-LG-24--Full-HD-144-Hz-Widescreen-24GL600F.png?v=638780083535300000']},
+    {id:6, name:'Cadeira Ergonômica', price:1299.9, category:'Móveis', description:'Apoio lombar, ajuste de altura e inclinação.', images:['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaqZ0wYW0BEzPDt7YJzS7nbj9xw-sX_XeZow&s']},
+    {id:7, name:'SSD NVMe 1TB', price:449.9, category:'Armazenamento', description:'Leituras até 3500 MB/s, 5 anos de garantia.', images:['https://static.gigabyte.com/StaticFile/Image/Global/13fdaa6e6dc982d0753d32c70c23d92c/Product/30161/Png']},
+    {id:8, name:'Webcam 1080p', price:229.0, category:'Acessórios', description:'Autofoco, microfone estéreo e clip universal.', images:['https://m.media-amazon.com/images/I/51OEgiWAoKL.jpg']}
 ];
 
-// ====== Utilidades ======
 const fmtBRL = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const byId = id => document.getElementById(id);
 
-// ====== Estado ======
 const state = {
   products: PRODUCTS,
   cart: JSON.parse(localStorage.getItem('cart')||'[]'),
@@ -22,7 +19,6 @@ const state = {
   currentDetail: null
 };
 
-// ====== Elementos ======
 const elCatalog = byId('catalog');
 const elCatFilter = byId('cat');
 const elQ = byId('q');
@@ -53,8 +49,8 @@ const elBairro = byId('bairro');
 const elCidade = byId('cidade');
 const elUF = byId('uf');
 const elMensagemCEP = byId('cep-message');
+const closeCheckoutBtn = byId('closeCheckout'); 
 
-// ====== Inicializar filtros ======
 function initFilters(){
   const cats = [...new Set(state.products.map(p=>p.category))];
   cats.forEach(c=>{
@@ -80,7 +76,6 @@ function initFilters(){
   });
 }
 
-// ====== Filtrar e ordenar ======
 function getFiltered(){
   let list = [...state.products];
   const {q,cat,sort} = state.filters;
@@ -96,7 +91,6 @@ function getFiltered(){
   return list;
 }
 
-// ====== Renderizar catálogo ======
 function renderCatalog(){
   const list = getFiltered();
   elCatalog.innerHTML = '';
@@ -127,7 +121,6 @@ function renderCatalog(){
   }
 }
 
-// ====== Renderizar carrinho ======
 function renderCart(){
   elCartItems.innerHTML = '';
   if(state.cart.length===0){
@@ -160,7 +153,6 @@ function renderCart(){
   localStorage.setItem('cart',JSON.stringify(state.cart));
 }
 
-// ====== Ações do catálogo ======
 elCatalog.addEventListener('click', e=>{
   const btn = e.target.closest('button');
   if(!btn) return;
@@ -176,7 +168,6 @@ elCatalog.addEventListener('click', e=>{
   }
 });
 
-// ====== Detalhes do produto ======
 function showDetail(product){
   detailTitle.textContent = product.name;
   detailImage.src = product.images[0];
@@ -185,7 +176,6 @@ function showDetail(product){
   detailPrice.textContent = fmtBRL(product.price);
   detailQty.value = 1;
 
-  // Thumbnails
   detailThumbs.innerHTML = '';
   product.images.forEach(src=>{
     const img = document.createElement('img');
@@ -205,7 +195,6 @@ addToCartBtn.addEventListener('click',()=>{
 
 closeDetailBtn.addEventListener('click',()=>dlgDetail.close());
 
-// ====== Adicionar ao carrinho ======
 function addToCart(product, qty){
   const existing = state.cart.find(p=>p.id===product.id);
   if(existing){
@@ -216,7 +205,6 @@ function addToCart(product, qty){
   renderCart();
 }
 
-// ====== Ações do carrinho ======
 elCartItems.addEventListener('click', e=>{
   const btn = e.target.closest('button');
   if(!btn) return;
@@ -233,8 +221,9 @@ elCartItems.addEventListener('click', e=>{
   renderCart();
 });
 
-// ====== Checkout ======
 elBtnCheckout.addEventListener('click',()=>dlgCheckout.showModal());
+
+closeCheckoutBtn.addEventListener('click',()=>dlgCheckout.close());
 
 formCheckout.addEventListener('submit', e=>{
   e.preventDefault();
@@ -244,7 +233,6 @@ formCheckout.addEventListener('submit', e=>{
   dlgCheckout.close();
 });
 
-// ====== CEP autopreenchimento ======
 function formatCep(value){
   value = value.replace(/\D/g,'');
   if(value.length>5) value=value.replace(/^(\d{5})(\d)/,'$1-$2');
@@ -280,7 +268,6 @@ elCep.addEventListener('input', e=>{
   else elMensagemCEP.textContent='';
 });
 
-// ====== Inicialização ======
 initFilters();
 renderCatalog();
 renderCart();
