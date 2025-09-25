@@ -91,28 +91,38 @@ function getFiltered(){
   return list;
 }
 
-function renderCatalog(){
+function renderCatalog() {
   const list = getFiltered();
   elCatalog.innerHTML = '';
-  if(list.length === 0){
-    elCatalog.innerHTML = '<p>Nenhum produto encontrado.</p>';
+  if (list.length === 0) {
+    elCatalog.innerHTML = '<p class="col-span-full text-center text-gray-600">Nenhum produto encontrado.</p>';
     return;
   }
-  for(const p of list){
+
+  for (const p of list) {
     const card = document.createElement('article');
-    card.className='card';
+    card.className =
+      "bg-white rounded-xl shadow-md overflow-hidden flex flex-col w-full max-w-xs hover:shadow-lg transition";
+
     card.innerHTML = `
-      <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
-      <div class="content">
-        <div class="row">
-          <strong>${p.name}</strong>
-          <span class="pill">${p.category}</span>
-        </div>
-        <div class="row" style="margin-top:6px">
-          <span class="price">${fmtBRL(p.price)}</span>
-          <div style="display:flex;gap:8px">
-            <button data-action="detail" data-id="${p.id}">Detalhes</button>
-            <button data-action="add" data-id="${p.id}">+ Carrinho</button>
+      <img src="${p.images[0]}" alt="${p.name}" 
+           class="h-48 w-full object-cover" loading="lazy">
+
+      <div class="p-4 flex flex-col flex-1">
+        <h3 class="text-lg font-semibold text-gray-800">${p.name}</h3>
+        <p class="text-sm text-gray-600 flex-1 mt-1">${p.description}</p>
+
+        <div class="mt-4">
+          <span class="block text-xl font-bold text-blue-600 mb-3">${fmtBRL(p.price)}</span>
+          <div class="flex gap-2">
+            <button data-action="detail" data-id="${p.id}"
+              class="flex-1 bg-gray-100 text-gray-800 font-medium px-3 py-2 rounded-lg border border-gray-300 shadow-sm hover:bg-gray-200 transition">
+              Detalhes
+            </button>
+            <button data-action="add" data-id="${p.id}"
+              class="flex-1 bg-yellow-400 text-gray-900 font-semibold px-3 py-2 rounded-lg shadow hover:bg-yellow-300 transition">
+              Adicionar
+            </button>
           </div>
         </div>
       </div>
@@ -121,37 +131,54 @@ function renderCatalog(){
   }
 }
 
-function renderCart(){
+function renderCart() {
   elCartItems.innerHTML = '';
-  if(state.cart.length===0){
+  if (state.cart.length === 0) {
     elCartEmpty.style.display = 'block';
     elSubtotal.textContent = fmtBRL(0);
     return;
   }
   elCartEmpty.style.display = 'none';
+
   let subtotal = 0;
-  state.cart.forEach(item=>{
+  state.cart.forEach(item => {
     subtotal += item.price * item.qty;
+
     const div = document.createElement('div');
-    div.className='cart-item';
+    div.className =
+      "flex items-center bg-gray-50 rounded-lg p-3 shadow-sm";
+
     div.innerHTML = `
-      <img src="${item.images[0]}" alt="${item.name}">
-      <div>
-        <strong>${item.name}</strong><br>
-        <span class="muted">${fmtBRL(item.price)} x ${item.qty}</span>
+      <!-- Imagem -->
+      <img src="${item.images[0]}" alt="${item.name}" 
+          class="w-14 h-14 object-cover rounded flex-shrink-0">
+
+      <!-- Detalhes -->
+      <div class="flex-1 px-3 min-w-0">
+        <p class="font-semibold text-gray-800 truncate">${item.name}</p>
+        <p class="text-sm text-gray-500">${fmtBRL(item.price)}</p>
       </div>
-      <div class="qty">
-        <button data-action="dec" data-id="${item.id}">-</button>
-        <input type="text" value="${item.qty}" readonly>
-        <button data-action="inc" data-id="${item.id}">+</button>
+
+      <!-- Controles -->
+      <div class="flex flex-col items-center gap-1">
+        <div class="flex items-center gap-1">
+          <button data-action="dec" data-id="${item.id}"
+            class="w-6 h-6 flex items-center justify-center bg-gray-100 text-gray-700 rounded-full border hover:bg-gray-200 transition text-sm">–</button>
+          <span class="w-6 text-center text-sm font-medium text-gray-800">${item.qty}</span>
+          <button data-action="inc" data-id="${item.id}"
+            class="w-6 h-6 flex items-center justify-center bg-gray-100 text-gray-700 rounded-full border hover:bg-gray-200 transition text-sm">+</button>
+        </div>
+        <button data-action="remove" data-id="${item.id}"
+          class="w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full shadow hover:bg-red-600 transition text-sm">✕</button>
       </div>
-      <button class="remove" data-action="remove" data-id="${item.id}">x</button>
     `;
     elCartItems.appendChild(div);
   });
+
   elSubtotal.textContent = fmtBRL(subtotal);
-  localStorage.setItem('cart',JSON.stringify(state.cart));
+  localStorage.setItem('cart', JSON.stringify(state.cart));
 }
+
 
 elCatalog.addEventListener('click', e=>{
   const btn = e.target.closest('button');
