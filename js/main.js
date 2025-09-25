@@ -7,7 +7,7 @@ const PRODUCTS = [
     {id:6, name:'Cadeira Ergonômica', price:1299.9, category:'Móveis', description:'Apoio lombar, ajuste de altura e inclinação.', images:['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaqZ0wYW0BEzPDt7YJzS7nbj9xw-sX_XeZow&s']},
     {id:7, name:'SSD NVMe 1TB', price:449.9, category:'Armazenamento', description:'Leituras até 3500 MB/s, 5 anos de garantia.', images:['https://static.gigabyte.com/StaticFile/Image/Global/13fdaa6e6dc982d0753d32c70c23d92c/Product/30161/Png']},
     {id:8, name:'Webcam 1080p', price:229.0, category:'Acessórios', description:'Autofoco, microfone estéreo e clip universal.', images:['https://m.media-amazon.com/images/I/51OEgiWAoKL.jpg']},
-    // Produtos selecionados
+    
     {id:9, name: "Combo Gamer Meetion", price:299.90, category:'Selecionados', description:'Combo gamer completo Meetion.', images:['/assets/images/product-4.png']},
     {id:10, name: "Msi GeForce Gtx 1650", price:1399.90, category:'Selecionados', description:'Placa de vídeo MSI GeForce GTX 1650.', images:['/assets/images/product-5.png']},
     {id:11, name: "Controle Dualsense PS5", price:349.90, category:'Selecionados', description:'Controle oficial Dualsense para PS5.', images:['/assets/images/product-6.png']},
@@ -24,20 +24,17 @@ const state = {
   currentDetail: null
 };
 
-// --- Seções principais ---
-const elSelected = byId('selectedProducts'); // produtos selecionados
+const elSelected = byId('selectedProducts');
 const elCatalog = byId('catalog');
 const elCatFilter = byId('cat');
 const elQ = byId('q');
 const elSort = byId('sort');
 
-// --- Carrinho ---
 const elCartItems = byId('cartItems');
 const elCartEmpty = byId('cartEmpty');
 const elSubtotal = byId('subtotal');
 const elBtnCheckout = byId('btnCheckout');
 
-// --- Modal de detalhes ---
 const dlgDetail = byId('dlgDetail');
 const detailTitle = byId('detailTitle');
 const detailImage = byId('detailImage');
@@ -49,7 +46,6 @@ const detailQty = byId('detailQty');
 const addToCartBtn = byId('addToCart');
 const closeDetailBtn = byId('closeDetail');
 
-// --- Modal de checkout ---
 const dlgCheckout = byId('dlgCheckout');
 const formCheckout = byId('formCheckout');
 const elCep = byId('cep');
@@ -61,7 +57,6 @@ const elUF = byId('uf');
 const elMensagemCEP = byId('cep-message');
 const closeCheckoutBtn = byId('closeCheckout'); 
 
-// --- Inicializa filtros ---
 function initFilters(){
   const cats = [...new Set(state.products.map(p=>p.category))];
   cats.forEach(c=>{
@@ -102,7 +97,6 @@ function getFiltered(){
   return list;
 }
 
-// --- Renderiza produtos selecionados ---
 function renderSelected(){
   const selected = state.products.filter(p=>p.category==='Selecionados');
   elSelected.innerHTML = '';
@@ -128,7 +122,6 @@ function renderSelected(){
   });
 }
 
-// --- Renderiza catálogo normal ---
 function renderCatalog() {
   const list = getFiltered().filter(p=>p.category!=='Selecionados');
   elCatalog.innerHTML = '';
@@ -159,7 +152,6 @@ function renderCatalog() {
   });
 }
 
-// --- Renderiza carrinho ---
 function renderCart() {
   elCartItems.innerHTML = '';
   if (state.cart.length === 0) {
@@ -196,7 +188,6 @@ function renderCart() {
   localStorage.setItem('cart', JSON.stringify(state.cart));
 }
 
-// --- Eventos de clique (detalhes / adicionar) ---
 [elSelected, elCatalog].forEach(container=>{
   container.addEventListener('click', e=>{
     const btn = e.target.closest('button');
@@ -213,9 +204,8 @@ function renderCart() {
   });
 });
 
-// --- Modal de detalhes ---
 function showDetail(product){
-  state.currentDetail = product; // ✅ garante que o produto atual está definido
+  state.currentDetail = product; 
 
   detailTitle.textContent = product.name;
   detailImage.src = product.images[0];
@@ -255,7 +245,6 @@ function showDetail(product){
   dlgDetail.showModal();
 }
 
-// --- Adiciona produto do modal ao carrinho ---
 addToCartBtn.addEventListener('click', ()=>{
   const qty = parseInt(detailQty.value) || 1;
   addToCart(state.currentDetail, qty);
@@ -264,7 +253,6 @@ addToCartBtn.addEventListener('click', ()=>{
 
 closeDetailBtn.addEventListener('click', ()=> dlgDetail.close());
 
-// --- Função addToCart ---
 function addToCart(product, qty){
   const existing = state.cart.find(p=>p.id===product.id);
   if(existing) existing.qty += qty;
@@ -272,7 +260,6 @@ function addToCart(product, qty){
   renderCart();
 }
 
-// --- Carrinho (incrementar / decrementar / remover) ---
 elCartItems.addEventListener('click', e=>{
   const btn = e.target.closest('button');
   if(!btn) return;
@@ -289,7 +276,6 @@ elCartItems.addEventListener('click', e=>{
   renderCart();
 });
 
-// --- Checkout ---
 elBtnCheckout.addEventListener('click', ()=> dlgCheckout.showModal());
 closeCheckoutBtn.addEventListener('click', ()=> dlgCheckout.close());
 
@@ -301,7 +287,6 @@ formCheckout.addEventListener('submit', e=>{
   dlgCheckout.close();
 });
 
-// --- CEP ---
 function formatCep(value){
   value = value.replace(/\D/g,'');
   if(value.length>5) value=value.replace(/^(\d{5})(\d)/,'$1-$2');
@@ -337,7 +322,6 @@ elCep.addEventListener('input', e=>{
   else elMensagemCEP.textContent='';
 });
 
-// --- Inicializa ---
 initFilters();
 renderSelected();
 renderCatalog();
