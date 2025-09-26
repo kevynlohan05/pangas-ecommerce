@@ -39,9 +39,7 @@
   <div class="max-w-7xl mx-auto px-4 py-16">
     <h3 class="text-center text-2xl font-semibold mb-2">Mais Vendidos</h3>
     <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-
-    <div id="selectedProducts" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
-    </div>
+    <div id="selectedProducts" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6"></div>
   </div>
 
   <main id="produtos" class="max-w-7xl mx-auto px-6 py-12">
@@ -69,61 +67,13 @@
       </div>
     </header>
 
-    <div id="teste" class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-      <div id="catalog" class="lg:col-span-3 grid gap-8 sm:grid-cols-2 md:grid-cols-3 justify-items-center">
-  
-      <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col w-full max-w-xs hover:shadow-lg transition">
-        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80" 
-            alt="Produto" 
-            class="h-48 w-full object-cover">
-        
-        <div class="p-4 flex flex-col flex-1">
-          <h3 class="text-lg font-semibold text-gray-800">Headset Gamer</h3>
-          <p class="text-sm text-gray-600 flex-1 mt-1">Som 7.1, microfone removível e acolchoamento macio.</p>
-          
-          <div class="mt-4">
-            <span class="block text-xl font-bold text-blue-600 mb-3">R$ 249,90</span>
-            
-            <div class="flex gap-2">
-              <button class="flex-1 bg-gray-100 text-gray-800 font-medium px-3 py-2 rounded-lg border border-gray-300 shadow-sm hover:bg-gray-200 transition">
-                Detalhes
-              </button>
-              <button class="flex-1 bg-yellow-400 text-gray-900 font-semibold px-3 py-2 rounded-lg shadow hover:bg-yellow-300 transition">
-                Adicionar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div id="catalog" class="lg:col-span-3 grid gap-8 sm:grid-cols-2 md:grid-cols-3 justify-items-center"></div>
 
       <aside id="cart" class="bg-white shadow-md rounded-lg p-6">
         <h2 class="text-lg font-semibold mb-4">Carrinho</h2>
-
-        <div id="cartItems" class="space-y-3">
-          <div class="cart-item flex items-center gap-3 bg-gray-50 rounded-lg p-3 shadow-sm">
-            <img src="https://via.placeholder.com/60" alt="Produto" class="w-16 h-16 object-cover rounded-md">
-
-            <div class="flex-1">
-              <h4 class="font-semibold text-sm text-gray-800">SSD NVMe</h4>
-              <p class="text-sm text-gray-600">R$ 449,90</p>
-
-              <div class="flex items-center gap-2 mt-2">
-                <button class="w-7 h-7 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300">-</button>
-                <span class="font-semibold text-gray-800">1</span>
-                <button class="w-7 h-7 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300">+</button>
-              </div>
-            </div>
-
-            <button class="w-7 h-7 flex items-center justify-center rounded-full bg-red-500 text-white hover:bg-red-600">
-              ✖
-            </button>
-          </div>
-        </div>
-
+        <div id="cartItems" class="space-y-3"></div>
         <div id="cartEmpty" class="text-gray-500 italic">Carrinho vazio</div>
-
         <div class="border-t pt-4 mt-4">
           <div class="flex justify-between mb-4">
             <strong>Subtotal:</strong>
@@ -166,104 +116,98 @@
       <h3 class="text-xl font-semibold">Checkout</h3>
       <button id="closeCheckout" class="text-sm text-gray-600 hover:text-red-500">Fechar</button>
     </div>
-    <div>
-      <form id="formCheckout" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <label class="col-span-2">Nome:
-          <input id="nome" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
-        </label>
-        <label>CEP:
-          <input id="cep" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
-        </label>
-        <label>Rua:
-          <input id="rua" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
-        </label>
-        <label>Número:
-          <input id="numero" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
-        </label>
-        <label>Bairro:
-          <input id="bairro" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
-        </label>
-        <label>Cidade:
-          <input id="cidade" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
-        </label>
-        <label>UF:
-          <input id="uf" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
-        </label>
-        <label class="col-span-2">Complemento:
-          <input id="complemento" type="text" class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
-        </label>
-        <button type="submit" class="col-span-2 mt-4 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Finalizar Pedido</button>
-      </form>
-    </div>
+    <form id="formCheckout" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <label class="col-span-2">Nome:
+        <input id="nome" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
+      </label>
+      <label>CEP:
+        <input id="cep" type="text" required pattern="\d{5}-?\d{3}" class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
+        <span id="cep-message" class="text-red-600 text-sm"></span>
+      </label>
+      <label>Rua:
+        <input id="rua" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
+      </label>
+      <label>Número:
+        <input id="numero" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
+      </label>
+      <label>Bairro:
+        <input id="bairro" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
+      </label>
+      <label>Cidade:
+        <input id="cidade" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
+      </label>
+      <label>UF:
+        <input id="uf" type="text" required class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
+      </label>
+      <label class="col-span-2">Complemento:
+        <input id="complemento" type="text" class="w-full border rounded px-3 py-2 mt-1 focus:ring focus:ring-blue-300 outline-none">
+      </label>
+      <button type="submit" class="col-span-2 mt-4 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+        Finalizar Pedido
+      </button>
+    </form>
   </dialog>
 
   <div class="bg-gray-50 py-12">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Depoimentos</h2>
-
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          
-          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center text-center">
-            <p class="text-4xl text-yellow-400 mb-2">“</p>
-            <p class="text-gray-700 mb-4">Já comprei algumas vezes e sempre gosto muito!</p>
-            <p class="text-yellow-400 mb-2 text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-            <p class="font-semibold text-gray-800">Kevyn Lohan</p>
-          </div>
-
-          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center text-center">
-            <p class="text-4xl text-yellow-400 mb-2">“</p>
-            <p class="text-gray-700 mb-4">Já comprei algumas vezes e sempre gosto muito!</p>
-            <p class="text-yellow-400 mb-2 text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-            <p class="font-semibold text-gray-800">Lavique Dias</p>
-          </div>
-
-          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center text-center">
-            <p class="text-4xl text-yellow-400 mb-2">“</p>
-            <p class="text-gray-700 mb-4">Já comprei algumas vezes e sempre gosto muito!</p>
-            <p class="text-yellow-400 mb-2 text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-            <p class="font-semibold text-gray-800">Esdras Gabriel</p>
-          </div>
-
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Depoimentos</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center text-center">
+          <p class="text-4xl text-yellow-400 mb-2">“</p>
+          <p class="text-gray-700 mb-4">Já comprei algumas vezes e sempre gosto muito!</p>
+          <p class="text-yellow-400 mb-2 text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="font-semibold text-gray-800">Kevyn Lohan</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center text-center">
+          <p class="text-4xl text-yellow-400 mb-2">“</p>
+          <p class="text-gray-700 mb-4">Já comprei algumas vezes e sempre gosto muito!</p>
+          <p class="text-yellow-400 mb-2 text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="font-semibold text-gray-800">Lavique Dias</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition flex flex-col items-center text-center">
+          <p class="text-4xl text-yellow-400 mb-2">“</p>
+          <p class="text-gray-700 mb-4">Já comprei algumas vezes e sempre gosto muito!</p>
+          <p class="text-yellow-400 mb-2 text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="font-semibold text-gray-800">Esdras Gabriel</p>
         </div>
       </div>
     </div>
+  </div>
 
   <footer id="footer" class="bg-gray-100 text-gray-800 mt-12">
-  <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-    
-    <div class="flex flex-col gap-3">
-      <p class="font-semibold text-lg">Baixe nossa aplicação</p>
-      <p class="text-sm text-gray-600">Baixe nossa aplicação para Android e iOS</p>
-      <div class="flex gap-4 mt-2">
-        <img src="/assets/images/app-store.png" alt="App Store" class="h-10 object-contain">
-        <img src="/assets/images/play-store.png" alt="Play Store" class="h-10 object-contain">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="flex flex-col gap-3">
+        <p class="font-semibold text-lg">Baixe nossa aplicação</p>
+        <p class="text-sm text-gray-600">Baixe nossa aplicação para Android e iOS</p>
+        <div class="flex gap-4 mt-2">
+          <img src="/assets/images/app-store.png" alt="App Store" class="h-10 object-contain">
+          <img src="/assets/images/play-store.png" alt="Play Store" class="h-10 object-contain">
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3 items-center md:items-start text-center md:text-left">
+        <h1 class="text-2xl font-bold">PANGAS<span class="text-yellow-500">SHOP</span></h1>
+        <p class="text-sm text-gray-600">Nosso objetivo é vender produtos de qualidade!</p>
+      </div>
+
+      <div class="flex flex-col gap-2 text-center md:text-left">
+        <h3 class="font-semibold text-lg mb-2">Links Úteis</h3>
+        <ul class="space-y-1 text-gray-600">
+          <li class="hover:text-gray-800 cursor-pointer">Cupons</li>
+          <li class="hover:text-gray-800 cursor-pointer">Blog post</li>
+          <li class="hover:text-gray-800 cursor-pointer">Políticas</li>
+          <li class="hover:text-gray-800 cursor-pointer">Torne-se afiliado</li>
+        </ul>
       </div>
     </div>
 
-    <div class="flex flex-col gap-3 items-center md:items-start text-center md:text-left">
-      <h1 class="text-2xl font-bold">PANGAS<span class="text-yellow-500">SHOP</span></h1>
-      <p class="text-sm text-gray-600">Nosso objetivo é vender produtos de qualidade!</p>
+    <hr class="border-gray-300 mx-6" />
+
+    <div class="max-w-7xl mx-auto px-6 py-4 text-center text-gray-500 text-sm">
+      <p>© 2024 PangasStore - Todos os direitos reservados</p>
     </div>
+  </footer>
 
-    <div class="flex flex-col gap-2 text-center md:text-left">
-      <h3 class="font-semibold text-lg mb-2">Links Úteis</h3>
-      <ul class="space-y-1 text-gray-600">
-        <li class="hover:text-gray-800 cursor-pointer">Cupons</li>
-        <li class="hover:text-gray-800 cursor-pointer">Blog post</li>
-        <li class="hover:text-gray-800 cursor-pointer">Políticas</li>
-        <li class="hover:text-gray-800 cursor-pointer">Torne-se afiliado</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <hr class="border-gray-300 mx-6" />
-
-  <div class="max-w-7xl mx-auto px-6 py-4 text-center text-gray-500 text-sm">
-    <p>© 2024 PangasStore - Todos os direitos reservados</p>
-  </div>
-</footer>
-
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js" type="module" defer></script>
 </body>
 </html>
